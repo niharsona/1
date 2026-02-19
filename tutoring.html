@@ -1212,7 +1212,7 @@
                 <div class="free-class-left-ml">സൌജന്യ ക്ലാസ്</div>
                 <p><span>ചില കുട്ടികൾക്ക് പഠനം ബുദ്ധിമുട്ടാണ്.</span> പേടിക്കേണ്ട — ഞങ്ങൾ ഇവിടെ ഉണ്ട്. ഏതൊരു കുട്ടിക്കും, ഏതൊരു ക്ലാസ്സിൽ നിന്നും ആയാലും, ഞങ്ങൾ സൌജന്യ സഹായം നൽകും.</p>
                 <p><span>പഠനം ഒരു ഭാരമല്ല, ഒരു യാത്രയാണ്.</span> നമ്മൾ ഒരുമിച്ച് ആ യാത്ര ചെയ്യും.</p>
-                <a href="/cdn-cgi/l/email-protection#593a36372d383a2d19322c2d2d202d3c383a313c2b2a773037" class="btn-free">ഞങ്ങളെ ബന്ധപ്പെടുക →</a>
+                <a href="/cdn-cgi/l/email-protection#a6c5c9c8d2c7c5d2e6cdd3d2d2dfd2c3c7c5cec3d4d588cfc8" class="btn-free">ഞങ്ങളെ ബന്ധപ്പെടുക →</a>
             </div>
             <div class="free-class-right">
                 <div class="free-feature">
@@ -1245,8 +1245,8 @@
     <div class="contact-strip">
         <h3>സഹായം വേണോ?</h3>
         <p>ഏതൊരു ചോദ്യവും ഇമെയിൽ ചെയ്യൂ — ഞങ്ങൾ മറുപടി നൽകും.</p>
-        <a href="/cdn-cgi/l/email-protection#6a0905041e0b091e2a011f1e1e131e0f0b09020f1819440304" class="contact-email">
-            ✉️ &nbsp; <span class="__cf_email__" data-cfemail="a4c7cbcad0c5c7d0e4cfd1d0d0ddd0c1c5c7ccc1d6d78acdca">[email&#160;protected]</span>
+        <a href="/cdn-cgi/l/email-protection#a0c3cfced4c1c3d4e0cbd5d4d4d9d4c5c1c3c8c5d2d38ec9ce" class="contact-email">
+            ✉️ &nbsp; <span class="__cf_email__" data-cfemail="d8bbb7b6acb9bbac98b3adacaca1acbdb9bbb0bdaaabf6b1b6">[email&#160;protected]</span>
         </a>
     </div>
 
@@ -1256,7 +1256,7 @@
 
 
     <!-- Shared hamburger + footer logic -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="kutty-extras.js" defer></script>
+    <script src="kutty-extras.js" defer></script>
 
     <script>
         // Staggered reveal for class cards on scroll
@@ -1264,4 +1264,14 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visibl
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        cards.forEach(card => observer.observe(card));
+    </script>
+
+</body>
+</html>
