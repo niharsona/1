@@ -1,5 +1,8 @@
+/* ============================================================
+   gardening-styles.css — KuttyTeachers Gardening Page
+   ============================================================ */
+
 :root {
-    /* Greenery palette */
     --primary-dark-green: #1b4332;
     --primary-green: #2d6a4f;
     --forest-green: #40916c;
@@ -9,10 +12,12 @@
     --off-white: #f8f9f7;
     --white: #ffffff;
     --black: #0b1c0e;
-    
-    /* Text colors */
     --light-text: #2d5a3d;
     --accent-green: #40916c;
+
+    --shadow-sm: 0 2px 8px rgba(27, 67, 50, 0.08);
+    --radius-sm: 6px;
+    --transition: 300ms ease;
 }
 
 * {
@@ -21,9 +26,7 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
     font-family: 'Inter', system-ui, sans-serif;
@@ -33,7 +36,101 @@ body {
     line-height: 1.6;
 }
 
-/* HERO SECTION */
+/* ── HEADER ─────────────────────────────────────────────────── */
+.header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: var(--white);
+    border-bottom: 2px solid var(--pale-green);
+    padding: 18px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+        rgba(45,106,79,0.12) 0%,
+        rgba(45,106,79,0.06) 25%,
+        rgba(82,183,136,0.04) 50%,
+        rgba(45,106,79,0.06) 75%,
+        rgba(45,106,79,0.12) 100%);
+    pointer-events: none;
+    z-index: -1;
+    animation: fadeFlow 4s ease-in-out infinite;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    z-index: 2;
+    text-decoration: none;
+}
+
+.logo-english {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-dark-green);
+    letter-spacing: 1px;
+}
+
+.logo-malayalam {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--forest-green);
+}
+
+.nav {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    z-index: 2;
+}
+
+.nav-item {
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    padding: 8px 14px;
+    text-decoration: none;
+    color: var(--light-text);
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition);
+    font-size: 0.95rem;
+    position: relative;
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 14px; right: 14px;
+    height: 2px;
+    background: var(--leaf-green);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition);
+}
+
+.nav-item:hover::after { transform: scaleX(1); }
+.nav-item:hover        { background: var(--pale-green); }
+
+.nav-item.active {
+    background: var(--primary-green);
+    color: var(--white);
+}
+
+.nav-item.active::after { display: none; }
+
+/* ── HERO SECTION ───────────────────────────────────────────── */
 .hero {
     margin-top: 80px;
     padding: 80px 32px;
@@ -107,7 +204,7 @@ body {
     animation: slideInDown 700ms ease-out 300ms forwards;
 }
 
-/* MAIN CONTAINER */
+/* ── MAIN CONTAINER ─────────────────────────────────────────── */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -125,7 +222,7 @@ body {
     animation: slideInDown 700ms ease-out forwards;
 }
 
-/* CATEGORY FILTER */
+/* ── CATEGORY FILTER ────────────────────────────────────────── */
 .category-filter {
     display: flex;
     gap: 12px;
@@ -160,7 +257,7 @@ body {
     border-color: var(--primary-green);
 }
 
-/* PLANTS GRID */
+/* ── PLANTS GRID ────────────────────────────────────────────── */
 .plants-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -223,9 +320,7 @@ body {
     margin-bottom: 12px;
 }
 
-.plant-emoji {
-    font-size: 1.5rem;
-}
+.plant-emoji { font-size: 1.5rem; }
 
 .plant-name {
     font-family: 'Noto Sans Malayalam', sans-serif;
@@ -248,7 +343,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* CARE DETAILS */
+/* ── CARE DETAILS ───────────────────────────────────────────── */
 .care-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -308,18 +403,13 @@ body {
     transition: all 300ms ease;
 }
 
-.read-more:hover {
-    background: var(--forest-green);
-}
+.read-more:hover { background: var(--forest-green); }
 
-/* MODAL */
+/* ── MODAL ──────────────────────────────────────────────────── */
 .modal {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(0, 0, 0, 0.5);
     z-index: 200;
     align-items: center;
@@ -327,9 +417,7 @@ body {
     padding: 20px;
 }
 
-.modal.active {
-    display: flex;
-}
+.modal.active { display: flex; }
 
 .modal-content {
     background: var(--white);
@@ -344,12 +432,10 @@ body {
 
 .modal-close {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 16px; right: 16px;
     background: var(--pale-green);
     border: none;
-    width: 32px;
-    height: 32px;
+    width: 32px; height: 32px;
     border-radius: 50%;
     cursor: pointer;
     font-size: 1.2rem;
@@ -359,10 +445,7 @@ body {
     transition: all 300ms ease;
 }
 
-.modal-close:hover {
-    background: var(--forest-green);
-    color: white;
-}
+.modal-close:hover { background: var(--forest-green); color: white; }
 
 .modal-title {
     font-family: 'Noto Sans Malayalam', sans-serif;
@@ -394,9 +477,7 @@ body {
     border: 2px solid var(--pale-green);
 }
 
-.modal-section {
-    margin-bottom: 24px;
-}
+.modal-section { margin-bottom: 24px; }
 
 .modal-section-title {
     font-family: 'Noto Sans Malayalam', sans-serif;
@@ -412,91 +493,49 @@ body {
     font-size: 0.95rem;
 }
 
-/* ANIMATIONS */
+/* ── ANIMATIONS ─────────────────────────────────────────────── */
 @keyframes slideInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
 @keyframes drift {
-    0%, 100% {
-        transform: translate(0, 0);
-    }
-    33% {
-        transform: translate(30px, -30px);
-    }
-    66% {
-        transform: translate(-20px, 20px);
-    }
+    0%, 100% { transform: translate(0, 0); }
+    33%       { transform: translate(30px, -30px); }
+    66%       { transform: translate(-20px, 20px); }
 }
 
 @keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-15px); }
 }
 
 @keyframes fadeFlow {
-    0%, 100% {
-        opacity: 0.8;
-    }
-    50% {
-        opacity: 1;
-    }
+    0%, 100% { opacity: 0.8; }
+    50%       { opacity: 1; }
 }
 
-/* RESPONSIVE */
+/* ── RESPONSIVE ─────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-    .hero h1 {
-        font-size: 2.4rem;
-    }
-
-    .plants-grid {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    }
+    .hero h1 { font-size: 2.4rem; }
+    .plants-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
 }
 
 @media (max-width: 768px) {
-    .header {
-        padding: 14px 16px;
-    }
+    .header { padding: 14px 16px; }
+    .nav    { display: none; }
 
-    .nav {
-        display: none;
-    }
-
-    .logo-english {
-        font-size: 0.85rem;
-    }
+    .logo-english { font-size: 0.85rem; }
 
     .hero {
         margin-top: 70px;
@@ -504,17 +543,9 @@ body {
         min-height: 400px;
     }
 
-    .hero h1 {
-        font-size: 1.8rem;
-    }
-
-    .hero-ml {
-        font-size: 1.1rem;
-    }
-
-    .hero p {
-        font-size: 1rem;
-    }
+    .hero h1   { font-size: 1.8rem; }
+    .hero-ml   { font-size: 1.1rem; }
+    .hero p    { font-size: 1rem; }
 
     .hero::after {
         font-size: 2.5rem;
@@ -522,13 +553,8 @@ body {
         letter-spacing: 8px;
     }
 
-    .container {
-        padding: 40px 16px;
-    }
-
-    .section-title {
-        font-size: 1.6rem;
-    }
+    .container     { padding: 40px 16px; }
+    .section-title { font-size: 1.6rem; }
 
     .plants-grid {
         grid-template-columns: 1fr;
@@ -539,31 +565,16 @@ body {
         opacity: 1;
     }
 
-    .care-grid {
-        grid-template-columns: 1fr;
-    }
+    .care-grid { grid-template-columns: 1fr; }
 
-    .category-filter {
-        gap: 8px;
-    }
+    .category-filter { gap: 8px; }
+    .category-btn    { padding: 8px 16px; font-size: 0.85rem; }
 
-    .category-btn {
-        padding: 8px 16px;
-        font-size: 0.85rem;
-    }
-
-    .modal-content {
-        padding: 24px;
-    }
-
-    .modal-title {
-        font-size: 1.4rem;
-    }
+    .modal-content { padding: 24px; }
+    .modal-title   { font-size: 1.4rem; }
 }
 
-/* REDUCED MOTION */
+/* ── REDUCED MOTION ─────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-    * {
-        animation: none !important;
-    }
+    * { animation: none !important; }
 }
